@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:receitas_com_api/pages/home_page.dart';
+import 'package:receitas_com_api/pages/recipe.dart';
 
 
 void main() {
@@ -17,6 +18,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       home: HomePage(),
+      routes: {
+        '/': (context) => AboutUs(),
+      }
     );
   }
 }
