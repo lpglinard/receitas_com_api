@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:receitas_com_api/pages/about_us.dart';
 
 import '../components/results_list.dart';
 import '../components/search_box.dart';
@@ -44,6 +45,11 @@ class _HomePageState extends State<HomePage> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
+              actions: [
+                IconButton(onPressed: () {
+                  Navigator.of(context).pushNamed(AboutUs.routeName);
+                }, icon: Icon(Icons.help))
+              ],
               expandedHeight: 160.0,
               floating: false,
               pinned: true,
@@ -73,7 +79,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ResultsList(recipes: _filteredRecipes),
+              child: ResultsList(),
             ),
           ],
         ),

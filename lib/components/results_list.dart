@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:receitas_com_api/providers/recipes_provider.dart';
 
 class ResultsList extends StatelessWidget {
-  final List<String> recipes;
 
-  ResultsList({required this.recipes});
+  ResultsList();
 
   @override
   Widget build(BuildContext context) {
@@ -17,19 +18,23 @@ class ResultsList extends StatelessWidget {
         ),
       );
     }
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: recipes.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text(
-            recipes[index],
-            style: TextStyle(fontFamily: 'Poppins'),
-          ),
-          leading: Icon(Icons.food_bank),
-        );
-      },
+    return Consumer<RecipeProvider>(
+      builder: (BuildContext context, RecipeProvider value, Widget? child) {
+        return ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: value.recipes.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(
+              value.recipes.elementAt(index).title,
+              style: TextStyle(fontFamily: 'Poppins'),
+            ),
+            leading: Icon(Icons.food_bank),
+          );
+        },
+      );
+      }
     );
   }
 }
