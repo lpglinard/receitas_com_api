@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:receitas_com_api/pages/home_page.dart';
-import 'package:receitas_com_api/pages/about_us.dart';
+import 'package:receitas_com_api/pages/favorites_page.dart';
 import 'package:receitas_com_api/providers/recipes_provider.dart';
 
 
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
         home: HomePage(),
         routes:
-        {AboutUs.routeName: (context) => AboutUs()}
+        {FavoritesPage.routeName: (context) => FavoritesPage()}
 
       ),
     );

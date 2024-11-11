@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:receitas_com_api/pages/about_us.dart';
-
+import 'package:provider/provider.dart';
+import 'package:receitas_com_api/pages/favorites_page.dart';
 import '../components/results_list.dart';
 import '../components/search_box.dart';
 import '../model/mock_data.dart';
+import '../providers/recipes_provider.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -29,12 +30,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _filterRecipes() {
-    String query = _searchController.text.toLowerCase();
-    setState(() {
-      _filteredRecipes = recipes.where((recipe) {
-        return recipe.toLowerCase().contains(query);
-      }).toList();
-    });
+    String query = _searchController.text;
+    Provider.of<RecipeProvider>(context, listen: false).searchRecipes(query);
   }
 
   @override
@@ -47,8 +44,8 @@ class _HomePageState extends State<HomePage> {
             SliverAppBar(
               actions: [
                 IconButton(onPressed: () {
-                  Navigator.of(context).pushNamed(AboutUs.routeName);
-                }, icon: Icon(Icons.help))
+                  Navigator.of(context).pushNamed(FavoritesPage.routeName);
+                }, icon: Icon(Icons.favorite_border))
               ],
               expandedHeight: 160.0,
               floating: false,
