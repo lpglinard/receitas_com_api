@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:receitas_com_api/pages/favorites_page.dart';
 import '../components/results_list.dart';
 import '../components/search_box.dart';
-import '../model/mock_data.dart';
 import '../providers/recipes_provider.dart';
+import '../model/recipe.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _filteredRecipes = recipes;  // Use imported recipes
+    _filteredRecipes = "" as List<String>;
     _searchController.addListener(_filterRecipes);
   }
 
