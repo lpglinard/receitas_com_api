@@ -4,8 +4,6 @@ import 'package:receitas_com_api/pages/favorites_page.dart';
 import '../components/results_list.dart';
 import '../components/search_box.dart';
 import '../providers/recipes_provider.dart';
-import '../model/recipe.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,24 +12,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   TextEditingController _searchController = TextEditingController();
-  List<String> _filteredRecipes = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _filteredRecipes = "" as List<String>;
-    _searchController.addListener(_filterRecipes);
-  }
 
   @override
   void dispose() {
     _searchController.dispose();
     super.dispose();
-  }
-
-  void _filterRecipes() {
-    String query = _searchController.text;
-    Provider.of<RecipeProvider>(context, listen: false).searchRecipes(query);
   }
 
   @override
@@ -43,9 +28,12 @@ class _HomePageState extends State<HomePage> {
           slivers: [
             SliverAppBar(
               actions: [
-                IconButton(onPressed: () {
-                  Navigator.of(context).pushNamed(FavoritesPage.routeName);
-                }, icon: Icon(Icons.favorite_border))
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(FavoritesPage.routeName);
+                  },
+                  icon: Icon(Icons.favorite_border),
+                )
               ],
               expandedHeight: 160.0,
               floating: false,
@@ -76,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SliverToBoxAdapter(
-              child: ResultsList(),
+              child: ResultsList(searchController: _searchController),
             ),
           ],
         ),

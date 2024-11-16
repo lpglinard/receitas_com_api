@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../pages/recipe_detail_page.dart';
 import '../providers/recipes_provider.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -27,6 +28,12 @@ class FavoritesPage extends StatelessWidget {
           final recipe = favorites[index];
           return ListTile(
             title: Text(recipe.title),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    RecipeDetailPage(recipeId: recipe.id),
+              ));
+            },
           );
         },
       ),

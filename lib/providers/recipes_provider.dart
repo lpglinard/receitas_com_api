@@ -26,7 +26,8 @@ class RecipeProvider with ChangeNotifier {
     }
   }
   Future<Recipe> fetchRecipeDetails(int recipeId) async {
-    final url = Uri.parse('https://api.spoonacular.com/recipes/$recipeId/information?apiKey=3e49dfd66f1e461b8cf36db9e703693d');
+    final url = Uri.parse(
+        'https://api.spoonacular.com/recipes/$recipeId/information?apiKey=3e49dfd66f1e461b8cf36db9e703693d');
     final response = await http.get(url);
 
     if (response.statusCode == 200) {
@@ -36,6 +37,7 @@ class RecipeProvider with ChangeNotifier {
       throw Exception('Failed to load recipe details');
     }
   }
+
   void toggleFavorite(Recipe recipe) {
     if (_favorites.contains(recipe)) {
       _favorites.remove(recipe);
