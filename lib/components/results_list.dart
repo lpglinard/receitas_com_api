@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:receitas_com_api/providers/recipes_provider.dart';
+import '../providers/recipes_provider.dart';
 import '../pages/recipe_detail_page.dart';
 
 class ResultsList extends StatelessWidget {
@@ -40,6 +40,8 @@ class ResultsList extends StatelessWidget {
       itemCount: recipeProvider.recipes.length,
       itemBuilder: (context, index) {
         final recipe = recipeProvider.recipes[index];
+        final isFavorite = recipeProvider.favorites.contains(recipe);
+
         return Card(
           margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           shape: RoundedRectangleBorder(
@@ -47,11 +49,37 @@ class ResultsList extends StatelessWidget {
           ),
           elevation: 4,
           child: ListTile(
-            title: Text(
-              recipe.title,
-              style: TextStyle(fontFamily: 'Poppins'),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    recipe.title,
+                    style: TextStyle(fontFamily: 'Poppins'),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.red : Colors.grey,
+                  ),
+                  onPressed: () {
+                    recipeProvider.toggleFavorite(recipe);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          isFavorite
+                              ? 'Removed from favorites'
+                              : 'Added to favorites',
+                        ),
+                        duration: Duration(seconds: 2),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
-            trailing: Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => RecipeDetailPage(recipeId: recipe.id),

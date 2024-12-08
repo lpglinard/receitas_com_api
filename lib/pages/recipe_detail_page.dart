@@ -3,6 +3,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 import 'package:receitas_com_api/providers/recipes_provider.dart';
 import '../model/recipe.dart';
+import 'favorites_page.dart';
 
 class RecipeDetailPage extends StatefulWidget {
   final int recipeId;
@@ -28,6 +29,17 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Recipe Details"),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(FavoritesPage.routeName);
+              },
+              icon: Icon(Icons.favorite, color: Colors.red,),
+            ),
+          ),
+        ],
       ),
       body: FutureBuilder<Recipe>(
         future: _recipe,
@@ -82,19 +94,21 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                             ),
                             onPressed: () {
                               recipeProvider.toggleFavorite(recipe);
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                content: Text(isFavorite
-                                    ? 'Removed from favorites'
-                                    : 'Added to favorites'),
-                                duration: Duration(seconds: 2),
-                              ));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    isFavorite
+                                        ? 'Removed from favorites'
+                                        : 'Added to favorites',
+                                  ),
+                                  duration: Duration(seconds: 2),
+                                ),
+                              );
                             },
                           ),
                         ],
                       ),
                       SizedBox(height: 16),
-
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -117,8 +131,6 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                         ],
                       ),
                       SizedBox(height: 16),
-
-
                       Text(
                         "Ingredients",
                         style: TextStyle(
@@ -136,8 +148,6 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                       if (recipe.ingredients.isEmpty)
                         Text("No ingredients available"),
                       SizedBox(height: 16),
-
-
                       Text(
                         "Instructions",
                         style: TextStyle(
