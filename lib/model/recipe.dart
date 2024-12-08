@@ -17,10 +17,21 @@ class Recipe {
     this.instructions,
   });
 
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    return other is Recipe && other.id == id;
+  }
+
+
+  @override
+  int get hashCode => id.hashCode;
+
   factory Recipe.fromJson(Map<String, dynamic> json) {
     return Recipe(
       id: json['id'],
-      title: json['title'],
+      title: _sanitizeText(json['title']),
       image: json['image'] ?? '',
       servings: json['servings'],
       readyInMinutes: json['readyInMinutes'],
@@ -30,5 +41,10 @@ class Recipe {
           [],
       instructions: json['instructions'] as String?,
     );
+  }
+
+  /// Função para limpar caracteres especiais no texto
+  static String _sanitizeText(String text) {
+    return text.replaceAll(RegExp(r'[^\x00-\x7F]'), ''); // Remove caracteres não ASCII
   }
 }
