@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart'; // Import necessário para renderizar HTML
 import 'package:provider/provider.dart';
 import 'package:receitas_com_api/providers/recipes_provider.dart';
 import '../model/recipe.dart';
@@ -77,13 +78,11 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                           ),
                           IconButton(
                             icon: Icon(
-                              isFavorite
-                                  ? Icons.favorite
-                                  : Icons.favorite_border,
+                              isFavorite ? Icons.favorite : Icons.favorite_border,
                               color: isFavorite ? Colors.red : Colors.grey,
                             ),
                             onPressed: () {
-                              recipeProvider.toggleFavorite(recipe);
+                              recipeProvider.toggleFavorite(recipe); // Alterar o estado de favorito
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(isFavorite
                                     ? 'Removed from favorites'
@@ -151,7 +150,9 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                       SizedBox(height: 8),
                       if (recipe.instructions != null &&
                           recipe.instructions!.isNotEmpty)
-                        Text(recipe.instructions!)
+                        Html(
+                          data: recipe.instructions!, // Renderiza HTML no app
+                        )
                       else
                         Text("No instructions available"),
                     ],
