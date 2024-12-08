@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<RecipeProvider>(create: (_) => RecipeProvider() )
       ],
       child: MaterialApp(
-        title: 'RecipeIt',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          fontFamily: 'Poppins',
-          primarySwatch: Colors.orange,
-        ),
-        home: HomePage(),
-        routes:
-        {FavoritesPage.routeName: (context) => FavoritesPage()}
+          title: 'RecipeIt',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            fontFamily: 'Poppins',
+            primarySwatch: Colors.orange,
+          ),
+          home: HomePage(),
+          routes:
+          {FavoritesPage.routeName: (context) => FavoritesPage()}
 
       ),
     );

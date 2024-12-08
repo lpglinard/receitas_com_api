@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:receitas_com_api/pages/favorites_page.dart';
 import '../components/results_list.dart';
 import '../components/search_box.dart';
-import '../providers/recipes_provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -23,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color(0xFFFFF3E0), // Background color for the body
+        color: Color(0xFFFFF3E0),
         child: CustomScrollView(
           slivers: [
             SliverAppBar(

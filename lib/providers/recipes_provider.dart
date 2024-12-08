@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../model/recipe.dart';
-import 'package:receitas_com_api/pages/favorites_page.dart';
 
 class RecipeProvider with ChangeNotifier {
   List<Recipe> _recipes = [];
@@ -46,4 +45,5 @@ class RecipeProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
 }
