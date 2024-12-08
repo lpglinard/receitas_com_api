@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart'; // Import necessário para renderizar HTML
+import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 import 'package:receitas_com_api/providers/recipes_provider.dart';
 import '../model/recipe.dart';
