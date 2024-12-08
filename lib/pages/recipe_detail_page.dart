@@ -61,7 +61,6 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Recipe Title Row with Favorite Button
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -82,7 +81,7 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                               color: isFavorite ? Colors.red : Colors.grey,
                             ),
                             onPressed: () {
-                              recipeProvider.toggleFavorite(recipe); // Alterar o estado de favorito
+                              recipeProvider.toggleFavorite(recipe);
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text(isFavorite
                                     ? 'Removed from favorites'
@@ -95,7 +94,7 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                       ),
                       SizedBox(height: 16),
 
-                      // Servings and Time
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -119,7 +118,7 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                       ),
                       SizedBox(height: 16),
 
-                      // Ingredients Section
+
                       Text(
                         "Ingredients",
                         style: TextStyle(
@@ -138,7 +137,7 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                         Text("No ingredients available"),
                       SizedBox(height: 16),
 
-                      // Instructions Section
+
                       Text(
                         "Instructions",
                         style: TextStyle(
@@ -151,7 +150,7 @@ class _RecipeDetailPageState extends State<RecipeDetailPage> {
                       if (recipe.instructions != null &&
                           recipe.instructions!.isNotEmpty)
                         Html(
-                          data: recipe.instructions!, // Renderiza HTML no app
+                          data: recipe.instructions!,
                         )
                       else
                         Text("No instructions available"),

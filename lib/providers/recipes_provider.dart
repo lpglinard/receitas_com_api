@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../model/recipe.dart';
-import 'package:receitas_com_api/pages/favorites_page.dart';
 
 class RecipeProvider with ChangeNotifier {
   List<Recipe> _recipes = [];
@@ -40,9 +39,9 @@ class RecipeProvider with ChangeNotifier {
 
   void toggleFavorite(Recipe recipe) {
     if (_favorites.contains(recipe)) {
-      _favorites.remove(recipe); // Desfavoritar
+      _favorites.remove(recipe);
     } else {
-      _favorites.add(recipe); // Favoritar
+      _favorites.add(recipe);
     }
     notifyListeners();
   }

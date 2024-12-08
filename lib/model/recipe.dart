@@ -43,8 +43,7 @@ class Recipe {
     );
   }
 
-  /// Função para limpar caracteres especiais no texto
   static String _sanitizeText(String text) {
-    return text.replaceAll(RegExp(r'[^\x00-\x7F]'), ''); // Remove caracteres não ASCII
+    return text.replaceAll(RegExp(r'[^\x00-\x7F]'), '');
   }
 }

@@ -12,7 +12,6 @@ class ResultsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final recipeProvider = Provider.of<RecipeProvider>(context);
 
-    // Check if the search box is empty
     if (searchController.text.isEmpty) {
       return Padding(
         padding: const EdgeInsets.all(16.0),
@@ -24,7 +23,6 @@ class ResultsList extends StatelessWidget {
       );
     }
 
-    // Display "No recipes found" if the search returns no results
     if (recipeProvider.recipes.isEmpty) {
       return Padding(
         padding: const EdgeInsets.all(16.0),
@@ -36,7 +34,6 @@ class ResultsList extends StatelessWidget {
       );
     }
 
-    // Display the list of recipes if available
     return ListView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
