@@ -13,7 +13,6 @@ class SearchBox extends StatelessWidget {
     return TextField(
       controller: searchController,
       onChanged: (value) {
-        // Notify provider to search recipes
         if (value.isNotEmpty) {
           Provider.of<RecipeProvider>(context, listen: false)
               .searchRecipes(value);
